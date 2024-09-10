@@ -15,6 +15,16 @@ gsap.registerPlugin(ScrollTrigger);
 export const Home = () => {
     useEffect(() => {
         // Initialize GSAP animation to fade in the element
+        gsap.to('.nav', {
+            scrollTrigger: {
+              trigger: '.nav',
+              start: 'top top', // Start animation when the top of the navbar hits the top of the viewport
+              end: () => `+=${document.body.scrollHeight}`, // End the animation based on the document height
+              scrub: true, // Smoothly catch up the animation to the scroll position
+              toggleClass: { targets: '.nav', className: 'scrolled' }, // Add/remove class based on scroll position
+              ease: 'ease-in-out' // Easing function for smoothness
+            },
+          });
         const animation = gsap.fromTo('.main--first h2', {
             opacity: 0
         }, { opacity: 1, duration: 2 ,scrollTrigger:{
